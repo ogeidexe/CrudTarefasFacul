@@ -13,7 +13,7 @@ public class Tarefa extends Tabela {
 	public String descricaoTarefa;
 	public boolean statusEntrega;
 	public boolean emAtraso;
-	public String[] prioridade =  {"baixa", "Normal","Alta"};
+	public String prioridade = "Normal";
 	public boolean foiProrrogada;
 	public Date dataProrrogacao;
 	
@@ -113,11 +113,11 @@ public class Tarefa extends Tabela {
 		this.emAtraso = emAtraso;
 	}
 
-	public String[] getPrioridade() {
+	public String getPrioridade() {
 		return prioridade;
 	}
 
-	public void setPrioridade(String[] prioridade) {
+	public void setPrioridade(String prioridade) {
 		this.prioridade = prioridade;
 	}
 	public boolean isProrrogada() {
