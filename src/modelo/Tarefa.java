@@ -93,11 +93,11 @@ public class Tarefa extends Tabela {
 	}
 
 	public Date getDataRegistro() {
-		return dataRegistro;
+		return dataInicial;
 	}
 
 	public void setDataRegistro(Date dataRegistro) {
-		this.dataRegistro = dataRegistro;
+		this.dataInicial = dataRegistro;
 	}
 
 	public String getTituloTarefa() {
