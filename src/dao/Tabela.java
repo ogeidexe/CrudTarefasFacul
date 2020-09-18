@@ -14,6 +14,8 @@ public abstract class Tabela {
 	
 	public abstract Tabela whoami();
 	
+
+	
 	/* TODO
 	 * relações entre os modelos (este modelo contempla apenas 1..N)
 	 * hasMany	

@@ -8,7 +8,7 @@ import dao.Tabela;
 
 public class Tarefa extends Tabela {
 	public Date dataEntrega;
-	public Date dataRegistro;
+	public Date dataInicial;
 	public String tituloTarefa;
 	public String descricaoTarefa;
 	public boolean statusEntrega;
@@ -22,21 +22,40 @@ public class Tarefa extends Tabela {
 	public List<Object> myFieldValues() {
 		List<Object> values = new ArrayList<>();
 		values.add(this.getDataEntrega());
+		
 		values.add(this.getDataRegistro());
+		
 		values.add(this.getTituloTarefa());
+		
 		values.add(this.getDescricaoTarefa());
+		
 		values.add(this.getStatusEntrega());
+		
 		values.add(this.getEmAtraso());
+		
 		values.add(this.getPrioridade());
+		
 		values.add(this.isProrrogada());
+		
 		values.add(this.getDataProrrogacao());
 		return values;
 	}
 
 	@Override
 	public List<String> myFieldNames() {
-		// TODO Auto-generated method stub
-		return null;
+		  
+		List<String> values = new ArrayList<>();
+		values.add("nomeTarefa");
+		values.add("dataInicial");
+		values.add("dataEntrega");
+		values.add("tituloTarefa");
+		values.add("descricaTarefa");
+		values.add("statusTarefa");
+		values.add("emAtraso");
+		values.add("prioridade");
+		values.add("isProrrogada");
+		values.add("DataProgorrogacao");
+		return values;
 	}
 
 	@Override
