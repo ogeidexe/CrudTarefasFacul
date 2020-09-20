@@ -22,5 +22,15 @@ public class DAO {
 	 private DAO() {
 		 
 	 }
+	 
+	 //Inserir 
+	 public void insert(Tabela tab) {
+		 
+	 }
+	 //Excluir 
+	 public void remove(Tabela tab) {
+		 
+	 }
+	 
 
 }

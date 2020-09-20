@@ -20,5 +20,8 @@ public class Controle <TABELA extends Tabela> {
 	
 	public List<TABELA> list(){
 		//return dao.list(this.getNo)
+		return null;
 	}
+	
+	p
 }
