@@ -13,7 +13,7 @@ public class Controle <TABELA extends Tabela> {
 	 * TO DO Removel <- pendente
 	 * 
 	 */
-	protected DAO dao;
+	protected IDAO dao;
 	public Controle() {
 		dao = DAO.getInstance();
 	}

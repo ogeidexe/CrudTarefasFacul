@@ -16,9 +16,9 @@ public class DAO {
 	 
 	 /*Obtem dados nesseçarios para a conecção 
 	  * Testa conecção com o banco
-	  * (o que são conecções ativas)?
 	  * 
 	  */
+	 
 	 private DAO() {
 		 
 	 }
@@ -27,6 +27,7 @@ public class DAO {
 	 public void insert(Tabela tab) {
 		 
 	 }
+	 
 	 //Excluir 
 	 public void remove(Tabela tab) {
 		 
