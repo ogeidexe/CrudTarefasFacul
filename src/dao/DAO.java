@@ -7,7 +7,7 @@ public class DAO {
 	 private static DAO dao;
 	 
 	 public static DAO getInstance() {
-		 if(dao ==  null ) {
+		 if(dao ==  null ) {cmd
 			dao =  new DAO(); 
 		 }
 		 return dao;
@@ -20,6 +20,7 @@ public class DAO {
 	  */
 	 
 	 private DAO() {
+		 
 		 
 	 }
 	 
