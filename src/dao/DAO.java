@@ -75,7 +75,7 @@ public class DAO implements IDAO {
 		return tabs;
 	}
 	
-	public Tabela fillData(PreparedStatement pst) {
+	public Tabela fillData(ResultSet rs) {
 		Tabela tabObj;
 		// tabObj.
 		return tabObj;
