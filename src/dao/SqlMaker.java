@@ -8,11 +8,12 @@ public class SqlMaker {
 	//Conditional  where you can put where *ba dum tis*
 	
 	private List<String> fields;
-	private List<String> values;
+	private List<Object> values;
 	private String method = null;
 	private String sql;
 	private String pkName;
 	private String tableName;
+	private Tabela objetoBd;
 //    private List<String> conditional
 	/* Basic Coditional 
 	 * *Where
@@ -21,6 +22,15 @@ public class SqlMaker {
 	 * Hard 
 	 * *Join
 	 */
+	public SqlMaker(Tabela tab) {
+		
+		this.fields =  tab.myFieldNames();
+		this.values =  tab.myFieldValues();
+		// this.pkName =  tab.;
+		this.tableName =  tab.getTableName();
+		this.objetoBd =  tab.whoami();
+	}
+	
 	public String makeMySql() {
 		//TODO error cathcers is to basic (melhorar)
 		int error = 0;
@@ -39,7 +49,7 @@ public class SqlMaker {
 			error += 1;
 		}
 		
-		if(pkName ==  null) {
+		if(pkName ==  null && this.needPk()) {
 			System.out.println("pk isn't defined");
 			error += 1;
 		}
@@ -54,22 +64,42 @@ public class SqlMaker {
 			switch (method) {
 				case"select":
 					//pode ter where
-					sql = "select" + this.colunsSixtaxe(fields);
+					sql = "select " + this.colunsSixtaxe(fields) + 
+							this.whereSintaxe();
 					break;
 				case"insert":
-					//obrigatorio ter where
+					//não tem where
+					sql  = "insert in to " +this.tableName + " " +
+							this.colunsSixtaxe(fields);
+							//" values " + this.colunsSixtaxe(values);
 					break;
 				case"remove":
 					//obrigatorio ter where
+					sql =  "delete from " + this.tableName + this.whereSintaxe();
 					break;
 				case"update":
-					//obrigatorio ter where
+					
+					//obrigatorio ter where (ou não depende do estagiario)
+					sql = "update " + this.tableName + " set " + this.updateSintaxe(this.fields,this.values)
+					 + " " + this.whereSintaxe(); 
 					break;
 			}
 		} 
 		return sql;
 	}
 	
+	private String whereSintaxe() {
+		String where =  "";
+		if(objetoBd != null) {
+			List<Object>  values  = objetoBd.myFieldValues();
+			where+= " where ";
+			for(Object value: values) {
+				if(value !=null && !value.equals(""))
+				where+=" and " + value.toString();
+			}
+		}
+		return where;
+	}
 	  
 	private String colunsSixtaxe(List<String> fields){
 		//Alinha o nome dos campos da Sql. (coluna1, coluna2,)
@@ -78,25 +108,27 @@ public class SqlMaker {
 			fields.remove(fields.indexOf(pkName));
 		}
 		
-		columns+="(";
-		for(String field: fields) {
-			columns+= field;
-		}
-		columns+=")";
-		
-		
-		
-		
+		columns+="( ";
+		columns+= String.join(",",fields);
+		columns+=" )";
 		return 	columns;
 	}
 	
-	private boolean needPk() {
-		if(this.getMethod().equals("update") ||
-		   this.getMethod().equals("remove")
-		) {
-			return true;
+	private String updateSintaxe(List<String> fields, List<Object> values) {
+		String updateSets = " ";
+		for(Object value:values) {
+			updateSets+=fields.get(values.indexOf(value)) +" = "+value.toString()+ ", ";   
 		}
-		return false;
+		
+		return updateSets;
+	}
+	
+	private boolean needPk() {
+		if(this.getMethod().equals("insert") 
+		) {
+			return false;
+		}
+		return true;
 	}
 	
 	public void setInsert() {
@@ -136,11 +168,26 @@ public class SqlMaker {
 		this.fields = fields;
 	}
 
-	public List<String> getValues() {
+	public List<Object> getValues() {
 		return values;
 	}
 
-	public void setValues(List<String> values) {
+	public void setValues(List<Object> values) {
 		this.values = values;
+	}
+	public String getTableName() {
+		return tableName;
+	}
+
+	public void setTableName(String tableName) {
+		this.tableName = tableName;
+	}
+
+	public Tabela getObjetoBd() {
+		return objetoBd;
+	}
+
+	public void setObjetoBd(Tabela objetoBd) {
+		this.objetoBd = objetoBd;
 	}
 }

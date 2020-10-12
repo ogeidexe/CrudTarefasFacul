@@ -8,13 +8,15 @@ public abstract class Tabela {
 
 	public abstract List<Object>  myFieldValues();
 	
+	public abstract boolean setFieldValues(List<Object> t);
+	
 	public abstract List<String> myFieldNames();
 	
 	public abstract List<String> fieldsWithDefaultValue();
 	
 	public abstract Tabela whoami();
 	
-
+	public abstract String pkName();
 	
 	/* TODO
 	 * relações entre os modelos (este modelo contempla apenas 1..N)

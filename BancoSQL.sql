@@ -9,7 +9,7 @@ CREATE TABLE public.tarefa (
  atraso bit,
  pripridade character varying(10),
  programada bit,
- data_programada date,
+ data_programada date
  
 );
 
