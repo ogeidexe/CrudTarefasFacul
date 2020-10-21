@@ -3,6 +3,7 @@ package controle;
 import java.util.List;
 
 import dao.DAO;
+import dao.IDAO;
 import dao.Tabela;
 
 public class Controle <TABELA extends Tabela> {
@@ -18,10 +19,22 @@ public class Controle <TABELA extends Tabela> {
 		dao = DAO.getInstance();
 	}
 	
-	public List<TABELA> list(){
-		//return dao.list(this.getNo)
-		return null;
+	public boolean insert() {
+		
+		return false;
 	}
 	
+<<<<<<< HEAD
+=======
+	public List<TABELA> list(TABELA t){
+		return dao.listar(t);
+	}
+	
+	public boolean remove(Integer Id) {
+		//
+		return true;
+	}
+	
+>>>>>>> branch 'master' of https://github.com/ogeidexe/CrudTarefasFacul.git
 	
 }

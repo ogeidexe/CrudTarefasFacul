@@ -7,6 +7,7 @@ import java.util.List;
 import dao.Tabela;
 
 public class Tarefa extends Tabela {
+	public String idTarefa;
 	public Date dataEntrega;
 	public Date dataInicial;
 	public String tituloTarefa;
@@ -45,6 +46,7 @@ public class Tarefa extends Tabela {
 	public List<String> myFieldNames() {
 		  
 		List<String> values = new ArrayList<>();
+		values.add("idTarefa");
 		values.add("nomeTarefa");
 		values.add("dataInicial");
 		values.add("dataEntrega");
@@ -56,6 +58,18 @@ public class Tarefa extends Tabela {
 		values.add("isProrrogada");
 		values.add("DataProgorrogacao");
 		return values;
+	}
+	
+	@Override
+	public boolean setFieldValues(List<Object> valueList) {
+		
+		try {
+			
+		}catch (Exception e) {
+			e.printStackTrace();
+			return false;
+		}
+		return true;
 	}
 
 	@Override
@@ -154,5 +168,12 @@ public class Tarefa extends Tabela {
 	public void setDataProrrogacao(Date dataProrrogacao) {
 		this.dataProrrogacao = dataProrrogacao;
 	}
+
+	@Override
+	public String pkName() {
+		return "idTarefa";
+	}
+
+
 
 }

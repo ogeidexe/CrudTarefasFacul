@@ -39,4 +39,16 @@ public class SubTarefa extends Tabela{
 		return new SubTarefa();
 	}
 
+	@Override
+	public String pkName() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public boolean setFieldValues(List<Object> t) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
 }
