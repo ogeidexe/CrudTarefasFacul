@@ -7,7 +7,7 @@ import java.util.List;
 import dao.Tabela;
 
 public class Tarefa extends Tabela {
-	public String idTarefa;
+	public Integer idTarefa;
 	public Date dataEntrega;
 	public Date dataInicial;
 	public String tituloTarefa;
@@ -46,25 +46,32 @@ public class Tarefa extends Tabela {
 	public List<String> myFieldNames() {
 		  
 		List<String> values = new ArrayList<>();
-		values.add("idTarefa");
-		values.add("nomeTarefa");
-		values.add("dataInicial");
-		values.add("dataEntrega");
-		values.add("tituloTarefa");
-		values.add("descricaTarefa");
-		values.add("statusTarefa");
-		values.add("emAtraso");
+		values.add("id_tarefa");
+		values.add("data_inicial");
+		values.add("data_entrega");
+		values.add("titulo");
+		values.add("descricao");
+		values.add("status_entrega");
+		values.add("atraso");
 		values.add("prioridade");
-		values.add("isProrrogada");
-		values.add("DataProgorrogacao");
+		values.add("prorrogada");
+		values.add("data_prorrogada");
 		return values;
 	}
 	
 	@Override
 	public boolean setFieldValues(List<Object> valueList) {
-		
 		try {
-			
+			this.setIdTarefa( (Integer) valueList.get(0));
+			this.setDataRegistro((Date) valueList.get(1));
+			this.setDataEntrega((Date) valueList.get(2));
+			this.setTituloTarefa((String) valueList.get(3));
+			this.setDescricaoTarefa((String)valueList.get(4));
+			this.setStatusEntrega((Boolean)valueList.get(5));
+			this.setEmAtraso((Boolean) valueList.get(6));
+			this.setPrioridade((String) valueList.get(7));
+			this.setProrrogada((Boolean) valueList.get(8));
+			this.setDataProrrogacao((Date) valueList.get(9));
 		}catch (Exception e) {
 			e.printStackTrace();
 			return false;
@@ -172,6 +179,14 @@ public class Tarefa extends Tabela {
 	@Override
 	public String pkName() {
 		return "idTarefa";
+	}
+	
+	public Integer getIdTarefa() {
+		return idTarefa;
+	}
+
+	public void setIdTarefa(Integer idTarefa) {
+		this.idTarefa = idTarefa;
 	}
 
 

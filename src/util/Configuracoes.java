@@ -1,6 +1,10 @@
 package util;
 
+import java.io.File;
 import java.io.IOException;
+import java.net.URISyntaxException;
+import java.net.URL;
+import java.nio.file.Paths;
 import java.util.Properties;
 
 public class Configuracoes {
@@ -36,9 +40,10 @@ public class Configuracoes {
 	private Configuracoes() {
 		
 	}
-	private void init() {
+	private void init()  {
 		Properties prop = new Properties();
 		try {
+			System.out.println(new File(".").getAbsolutePath());
 			prop.load( getClass().getClassLoader().getResourceAsStream("config.properties") );
 			urlConexao	= prop.getProperty(URLCONEXAO, "jdbc:postgresql://localhost:5432/prog3");
 			usuarioBd	= prop.getProperty(USUARIO_BD, "postgres");

@@ -29,6 +29,7 @@ public class SqlMaker {
 		// this.pkName =  tab.;
 		this.tableName =  tab.getTableName();
 		this.objetoBd =  tab.whoami();
+		this.pkName =  tab.pkName();
 	}
 	
 	public String makeMySql() {
@@ -64,8 +65,10 @@ public class SqlMaker {
 			switch (method) {
 				case"select":
 					//pode ter where
-					sql = "select " + this.colunsSixtaxe(fields) + 
-							this.whereSintaxe();
+					sql = "select "+
+						    this.colunsSixtaxe(fields) + 
+							" from "+ this.tableName;
+						    this.whereSintaxe();
 					break;
 				case"insert":
 					//não tem where

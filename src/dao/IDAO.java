@@ -8,6 +8,4 @@ public interface IDAO {
 	public boolean insert(Tabela t);
 	public boolean remove(Tabela t);
 	public boolean modfy(Tabela t);
-	public boolean whoiam(Tabela t);
-	
 }

@@ -59,13 +59,14 @@ public class DAO implements IDAO {
 		PreparedStatement pst;
 		sqlMaker.setSelect();
 		sql = sqlMaker.makeMySql();
+		System.out.println(sql);
 		try {
 			pst = con.prepareStatement(sql);
 			ResultSet rs =  pst.executeQuery();
 			while(rs.next()) {
-				Tabela aux = t.whoami();
-				aux = this.fillData(rs);
-				tabs.add((T) aux);
+				Tabela aux =  t.whoami();			
+				aux.setFieldValues(getFieldValues(rs));
+				tabs.add((T)aux);
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -74,13 +75,19 @@ public class DAO implements IDAO {
 		
 		return tabs;
 	}
-	
-	public Tabela fillData(ResultSet rs) {
-		Tabela tabObj;
-		// tabObj.
-		return tabObj;
+
+	private List<Object> getFieldValues(ResultSet rs) throws SQLException {
+		ArrayList<Object> list = new ArrayList<>();
+		int columnCount = rs.getMetaData().getColumnCount();
+		
+		for (int i = 1; i <= columnCount; i++) {
+			list.add(rs.getObject(i));
+		}
+		return list;
 	}
 
+	
+	//send values to fiil in model
 	@Override
 	public <T extends Tabela> List<T> procurar(T t) {
 		// TODO Auto-generated method stub
@@ -107,13 +114,5 @@ public class DAO implements IDAO {
 		// TODO Auto-generated method stub
 		return false;
 	}
-
-
-	@Override
-	public boolean whoiam(Tabela t) {
-		// TODO Auto-generated method stub
-		return false;
-	}
-	 
 
 }

@@ -2,11 +2,13 @@ package controle;
 
 import java.util.List;
 
+import javax.websocket.MessageHandler.Whole;
+
 import dao.DAO;
 import dao.IDAO;
 import dao.Tabela;
 
-public class Controle <TABELA extends Tabela> {
+public abstract class Controle <TABELA extends Tabela> {
 	/*
 	 * TO DO Insert <- fazendo
 	 * TO DO List <- pendente
@@ -17,6 +19,7 @@ public class Controle <TABELA extends Tabela> {
 	protected IDAO dao;
 	public Controle() {
 		dao = DAO.getInstance();
+		// this.tabelaClass.whoami();
 	}
 	
 	public boolean insert() {
@@ -24,10 +27,9 @@ public class Controle <TABELA extends Tabela> {
 		return false;
 	}
 	
-<<<<<<< HEAD
-=======
-	public List<TABELA> list(TABELA t){
-		return dao.listar(t);
+	@SuppressWarnings("unchecked")
+	public List<TABELA> list(){
+		return (List<TABELA>) (dao.listar(this.whoami()));
 	}
 	
 	public boolean remove(Integer Id) {
@@ -35,6 +37,6 @@ public class Controle <TABELA extends Tabela> {
 		return true;
 	}
 	
->>>>>>> branch 'master' of https://github.com/ogeidexe/CrudTarefasFacul.git
+	public abstract Tabela whoami();
 	
 }
