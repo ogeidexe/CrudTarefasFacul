@@ -2,7 +2,6 @@ package controle;
 
 import java.util.List;
 
-import javax.websocket.MessageHandler.Whole;
 
 import dao.DAO;
 import dao.IDAO;

@@ -8,7 +8,6 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-
 import util.Configuracoes;
 
 public class DAO implements IDAO {
@@ -64,7 +63,8 @@ public class DAO implements IDAO {
 			pst = con.prepareStatement(sql);
 			ResultSet rs =  pst.executeQuery();
 			while(rs.next()) {
-				Tabela aux =  t.whoami();			
+				System.out.println(rs.getInt("id_tarefa"));
+				Tabela aux =  t.whoami();
 				aux.setFieldValues(getFieldValues(rs));
 				tabs.add((T)aux);
 			}

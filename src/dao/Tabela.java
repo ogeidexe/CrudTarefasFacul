@@ -18,7 +18,8 @@ public abstract class Tabela {
 	
 	public abstract String pkName();
 	
-	/* TODO
+	// public abstract 
+	/* TODOtype filter text
 	 * relações entre os modelos (este modelo contempla apenas 1..N)
 	 * hasMany	
 	 * hasOne
