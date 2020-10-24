@@ -9,4 +9,14 @@
     <welcome-file>default.htm</welcome-file>
     <welcome-file>default.jsp</welcome-file>
   </welcome-file-list>
+  <servlet>
+    <description></description>
+    <display-name>lista</display-name>
+    <servlet-name>lista</servlet-name>
+    <servlet-class>visao.Listar</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>lista</servlet-name>
+    <url-pattern>/lista</url-pattern>
+  </servlet-mapping>
 </web-app>

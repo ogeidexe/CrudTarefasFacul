@@ -81,7 +81,6 @@ public class Tarefa extends Tabela {
 
 	@Override
 	public List<String> fieldsWithDefaultValue() {
-		// TODO Auto-generated method stub
 		List<String> fieldsWDefaultValue = new ArrayList<>(); 
 		fieldsWDefaultValue.add("prioridade");
 		return fieldsWDefaultValue;
