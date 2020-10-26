@@ -51,7 +51,7 @@ public class SubTarefa extends Tabela {
 	@Override
 	public String pkName() {
 		// TODO Auto-generated method stub
-		return null;
+		return "id_subtarefa";
 	}
 
 	@Override

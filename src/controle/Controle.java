@@ -9,24 +9,24 @@ import dao.Tabela;
 
 public abstract class Controle <TABELA extends Tabela> {
 	/*
-	 * TO DO Insert <- fazendo
-	 * TO DO List <- pendente
+	 * TO DO Insert <- feito
+	 * TO DO List <- fasendo
 	 * TO DO Update <-pendente
 	 * TO DO Removel <- pendente
 	 * 
 	 */
+	//Controladores com a primeira letra maiuscula apenas
 	protected IDAO dao;
 	public Controle() {
 		dao = DAO.getInstance();
 		// this.tabelaClass.whoami();
 	}
 	
-	public boolean insert() {
+	public boolean insert(Tabela t) {
 		
-		return false;
+		return dao.insert(t);
 	}
 	
-	@SuppressWarnings("unchecked")
 	public List<TABELA> list(){
 		return (List<TABELA>) (dao.listar(this.whoami()));
 	}

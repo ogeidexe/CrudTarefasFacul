@@ -63,9 +63,8 @@ public class DAO implements IDAO {
 			pst = con.prepareStatement(sql);
 			ResultSet rs =  pst.executeQuery();
 			while(rs.next()) {
-				System.out.println(rs.getInt("id_tarefa"));
 				Tabela aux =  t.whoami();
-				aux.setFieldValues(getFieldValues(rs));
+				aux.setFieldValues(this.getFieldValues(rs));
 				tabs.add((T)aux);
 			}
 		} catch (SQLException e) {
@@ -79,25 +78,43 @@ public class DAO implements IDAO {
 	private List<Object> getFieldValues(ResultSet rs) throws SQLException {
 		ArrayList<Object> list = new ArrayList<>();
 		int columnCount = rs.getMetaData().getColumnCount();
-		
 		for (int i = 1; i <= columnCount; i++) {
 			list.add(rs.getObject(i));
 		}
+		System.out.println(list);
 		return list;
 	}
 
 	
-	//send values to fiil in model
+	//send values to fill in model
 	@Override
 	public <T extends Tabela> List<T> procurar(T t) {
-		// TODO Auto-generated method stub
+		SqlMaker sqlMaker =  new SqlMaker(t);
+		String sql = "";
+		PreparedStatement pst;
+		sqlMaker.setSelect();
+		sql = sqlMaker.makeMySql();
+		System.out.println(sql);
 		return null;
 	}
 
 
 	@Override
 	public boolean insert(Tabela t) {
-		// TODO Auto-generated method stub
+		SqlMaker sqlMaker =  new SqlMaker(t);
+		String sql = "";
+		PreparedStatement pst;
+		sqlMaker.setInsert();
+		sql = sqlMaker.makeMySql();
+		System.out.println(sql);
+		try {
+			pst = con.prepareStatement(sql);
+			if(pst.executeUpdate() == 1) {
+				return true;
+			}
+		} catch (SQLException e) { 
+			e.printStackTrace();
+		}
 		return false;
 	}
 
@@ -110,7 +127,7 @@ public class DAO implements IDAO {
 
 
 	@Override
-	public boolean modfy(Tabela t) {
+	public boolean modify(Tabela t) {
 		// TODO Auto-generated method stub
 		return false;
 	}

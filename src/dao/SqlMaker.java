@@ -110,10 +110,7 @@ public class SqlMaker {
 		if(!this.needPk()) {	
 			fields.remove(fields.indexOf(pkName));
 		}
-		
-		columns+="( ";
 		columns+= String.join(",",fields);
-		columns+=" )";
 		return 	columns;
 	}
 	

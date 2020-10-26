@@ -1,5 +1,7 @@
 package dao;
 
+
+import java.util.HashMap;
 import java.util.List;
 
 public abstract class Tabela {
@@ -18,11 +20,15 @@ public abstract class Tabela {
 	
 	public abstract String pkName();
 	
-	// public abstract 
+	public abstract HashMap<String, String> fieldTypes();
+	
+	// \public convertTypes()
+	// public abstract /
 	/* TODOtype filter text
 	 * relações entre os modelos (este modelo contempla apenas 1..N)
 	 * hasMany	
 	 * hasOne
-	 * 
 	*/
+	 
+	
 }

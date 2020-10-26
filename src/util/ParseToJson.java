@@ -1,5 +1,6 @@
 package util;
 
+import java.sql.Date;
 import java.util.List;
 
 import dao.Tabela;
@@ -9,11 +10,14 @@ public class ParseToJson {
 	public String convert(List<Tabela> lstb) {
 		String json = "[";
 		for(Tabela  item : lstb) {
-		   json.concat("{");
-		   json.concat(this.putQuotes(item));
-		   json.concat("},");
+		   json+="{";
+		   json+=this.putQuotes(item);
+		   json+="}";
+		   if(lstb.indexOf(item) < lstb.size() - 1) {
+			   json+=',';
+		   };
 		}
-		json.concat("]");
+		json+="]";
 		return json;
 	}	
 	
@@ -23,13 +27,21 @@ public class ParseToJson {
 		String itemStr = "";
 		if(tempFn.size() != tempFv.size()) {
 			System.out.println("columns and values dont macth");
+			System.out.println("Fields"+ tempFn.size());
+			System.out.println("Coluns"+ tempFv.size());
 			return "";
 			//System.exit(0);
 		}
 		for(String fn: tempFn) {
 			int index =  tempFn.indexOf(fn);
-			itemStr.concat("\""+fn+"\""+":"+
-			quoteByInstance(tempFv.get(index)));
+			String temp = "";
+			temp = "\""+fn+"\""+":"+this.quoteByInstance(tempFv.get(index));
+			
+			if(tempFn.size() -1 > index ) {
+				temp+=",";
+			}
+			
+			itemStr+= temp;
 		}
 		return itemStr;
 		
@@ -37,10 +49,10 @@ public class ParseToJson {
 	
 	private String quoteByInstance(Object obj) {
 		String result = "";
-		if(obj.getClass() ==  String.class ) {
-			result.concat("\""+obj.toString()+"\"");
+		if(obj.getClass() ==  String.class || obj.getClass() ==  Date.class) {
+			result+="\""+obj.toString()+"\"";
 		} else {
-			result.concat(obj.toString());
+			result+=obj.toString();
 		}
 		return result;
 	}

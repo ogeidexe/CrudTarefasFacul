@@ -2,6 +2,7 @@ package modelo;
 
 import java.sql.Date;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 import dao.Tabela;
@@ -14,7 +15,7 @@ public class Tarefa extends Tabela {
 	public String descricaoTarefa;
 	public boolean statusEntrega;
 	public boolean emAtraso;
-	public String prioridade = "Normal";
+	public String prioridade;
 	public boolean foiProrrogada;
 	public Date dataProrrogacao;
 	
@@ -22,6 +23,8 @@ public class Tarefa extends Tabela {
 	@Override
 	public List<Object> myFieldValues() {
 		List<Object> values = new ArrayList<>();
+		values.add(this.getIdTarefa());
+		
 		values.add(this.getDataEntrega());
 		
 		values.add(this.getDataRegistro());
@@ -62,7 +65,7 @@ public class Tarefa extends Tabela {
 	@Override
 	public boolean setFieldValues(List<Object> valueList) {
 		try {
-			this.setIdTarefa( (Integer) valueList.get(0));
+			this.setIdTarefa((Integer) valueList.get(0) );
 			this.setDataRegistro((Date) valueList.get(1));
 			this.setDataEntrega((Date) valueList.get(2));
 			this.setTituloTarefa((String) valueList.get(3));
@@ -77,6 +80,21 @@ public class Tarefa extends Tabela {
 			return false;
 		}
 		return true;
+	}
+	@Override 
+	public HashMap<String, String> fieldTypes() {
+	HashMap<String, String> lista = new HashMap<>();
+			lista.put("Integer","parseInt");
+			lista.put("Date", "valueOf");
+			lista.put("Date", "valueOf" ); 
+			lista.put("String","toString");
+			lista.put("String","toString");
+			lista.put("Boolean","getBoolean");
+			lista.put("Boolean","getBoolean");
+			lista.put("String", "toString");
+			lista.put("Boolean", "getBoolean");
+			lista.put("Date","valueOf");
+		return lista;
 	}
 
 	@Override

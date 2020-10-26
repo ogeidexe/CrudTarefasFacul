@@ -7,5 +7,5 @@ public interface IDAO {
 	public <T extends Tabela> List<T> procurar(T t);
 	public boolean insert(Tabela t);
 	public boolean remove(Tabela t);
-	public boolean modfy(Tabela t);
+	public boolean modify(Tabela t);
 }
